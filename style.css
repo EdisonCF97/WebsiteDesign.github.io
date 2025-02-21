@@ -1,0 +1,84 @@
+h1 img {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.background {
+    background: linear-gradient(135deg, cornflowerblue, #eeeddd);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.input-group {
+    margin-top: 20px;
+}
+
+#searchInput {
+    width: 80%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.input-group {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group-text{
+    width: 5%;
+}
+
+img {
+     width: 20px;
+     margin-right: 5px;
+}
+
+button i {
+    font-size: 20px;
+}
+
+table.movie-table {
+    background-color: black;
+    color: white;
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table.movie-table th {
+    background-color: #333;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+.celebration {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: gold;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    font-size: 24px;
+    font-weight: bold;
+}
