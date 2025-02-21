@@ -49,6 +49,10 @@
         <button class="btn btn-secondary" onclick="sortMovies('status')">Sort by Status</button>
         <button class="btn btn-secondary" onclick="sortMovies('rating')">Sort by Rate</button>
     </div>
+    <div class="group-options p-3 text-center">
+        <button class="btn btn-secondary" onclick="groupBy('title')">Group by Title</button>
+        <button class="btn btn-secondary" onclick="groupBy('director')">Group by Director</button>
+    </div>
     <div class="input-group">
         <input type="text" id="searchInput" class="form-control" placeholder="Search by Title or Director">
         <button class="btn btn-outline-secondary" type="button" id="searchBtn">
@@ -59,6 +63,7 @@
     <table class="table movie-table">
         <thead class="table-dark">
         <tr>
+            <th>Cover</th>
             <th>Title</th>
             <th>Director</th>
             <th>Release Date</th>
