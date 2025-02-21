@@ -28,19 +28,19 @@ function sortMovies(criteria) {
     renderMovies();
 }
 
-// Group by function with custom grouping for series (e.g., Harry Potter)
+// Group by function with custom grouping for series
 async function groupBy(criteria) {
     const grouped = {};
 
-    // Group movies based on the selected criteria or custom grouping (e.g., 'Harry Potter' series)
+    // Group movies based on the selected criteria or custom grouping
     movies.forEach(movie => {
         let key;
 
         // Custom grouping: Check if the title contains "Harry Potter"
         if (movie.title.toLowerCase().includes('harry potter')) {
-            key = 'Harry Potter Series'; // Group all Harry Potter movies under "Harry Potter Series"
+            key = 'Harry Potter Series'; 
         } else {
-            key = movie[criteria]; // Otherwise, group by the specified criteria (e.g., title or director)
+            key = movie[criteria]; // Otherwise, group by the specified criteria
         }
 
         if (!grouped[key]) grouped[key] = [];
@@ -50,6 +50,10 @@ async function groupBy(criteria) {
     const tbody = document.getElementById('movieList');
     tbody.innerHTML = await Promise.all(Object.keys(grouped).map(async key => {
         const group = grouped[key];
+
+        // Calculate the average rating for the group
+        const avgRating = group.reduce((sum, movie) => sum + movie.rating, 0) / group.length;
+        const avgRatingDisplay = avgRating.toFixed(2); // Format average rating to 2 decimal places
 
         // Sort the movies within the group by their number (for Harry Potter or similar series)
         const groupWithCover = await Promise.all(group.map(async movie => {
@@ -66,7 +70,7 @@ async function groupBy(criteria) {
 
         return `
             <tr>
-                <td colspan="7"><strong>${key}</strong></td>
+                <td colspan="7"><strong>${key} (Average Rating: ${avgRatingDisplay})</strong></td>
             </tr>
             ${sortedGroup.map(movie => `
                 <tr class="${movie.status === 'completed' ? 'completed' : ''}">
