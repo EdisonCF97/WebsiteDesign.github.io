@@ -1,7 +1,7 @@
 //Initialize the Movies List from Local Storage
 let movies = JSON.parse(localStorage.getItem('movies')) || [];
 
-//Form Submission to Add New Movie
+//Add New Movie
 document.getElementById('movieForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const newMovie = {
@@ -28,7 +28,7 @@ function sortMovies(criteria) {
     renderMovies();
 }
 
-// Group by function with custom grouping for series
+// Group by function
 async function groupBy(criteria) {
     const grouped = {};
 
@@ -36,9 +36,8 @@ async function groupBy(criteria) {
     movies.forEach(movie => {
         let key;
 
-        // Custom grouping: Check if the title contains "Harry Potter"
         if (movie.title.toLowerCase().includes('harry potter')) {
-            key = 'Harry Potter Series'; 
+            key = 'Harry Potter Series';
         } else {
             key = movie[criteria]; // Otherwise, group by the specified criteria
         }
@@ -53,19 +52,19 @@ async function groupBy(criteria) {
 
         // Calculate the average rating for the group
         const avgRating = group.reduce((sum, movie) => sum + movie.rating, 0) / group.length;
-        const avgRatingDisplay = avgRating.toFixed(2); // Format average rating to 2 decimal places
+        const avgRatingDisplay = avgRating.toFixed(2);
 
-        // Sort the movies within the group by their number (for Harry Potter or similar series)
+        // Sort the movies within the group by their number
         const groupWithCover = await Promise.all(group.map(async movie => {
-            const cover = await fetchCover(movie.title); // Fetch cover asynchronously
-            return { ...movie, cover }; // Add cover to movie object
+            const cover = await fetchCover(movie.title);
+            return { ...movie, cover };
         }));
 
-        // Sort movies by number (for example, sorting Harry Potter movies as 1, 2, 3)
+        // Sort movies by number
         const sortedGroup = groupWithCover.sort((a, b) => {
             const numberA = extractNumber(a.title);
             const numberB = extractNumber(b.title);
-            return numberA - numberB; // Sort by the extracted number
+            return numberA - numberB;
         });
 
         return `
@@ -89,7 +88,7 @@ async function groupBy(criteria) {
     })).then(rows => rows.join(''));
 }
 
-// Helper function to extract the movie number from the title (assuming the format includes a number like '1', '2', '3', etc.)
+// Helper function to extract the movie number from the title
 function extractNumber(title) {
     const match = title.match(/\d+/); // Match the first number in the title
     return match ? parseInt(match[0]) : Infinity; // If no number is found, return Infinity to place it at the end
