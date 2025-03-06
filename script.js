@@ -119,6 +119,7 @@ async function renderMovies(filter = "") {
                     </td>
                     <td>
                         <select class="form-select rating-select" data-id="${movie.id}">
+                            <option value="1" ${movie.rating === 0 ? 'selected' : ''}>0</option>
                             <option value="1" ${movie.rating === 1 ? 'selected' : ''}>1</option>
                             <option value="2" ${movie.rating === 2 ? 'selected' : ''}>2</option>
                             <option value="3" ${movie.rating === 3 ? 'selected' : ''}>3</option>

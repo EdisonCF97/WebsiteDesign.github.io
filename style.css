@@ -78,3 +78,11 @@ table.movie-table th {
     font-size: 24px;
     font-weight: bold;
 }
+
+table.movie-table img {
+    width: 60px;
+    height: auto;
+    object-fit: cover;
+}
+
+
